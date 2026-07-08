@@ -1,0 +1,246 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #0f172a 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.game-container {
+    background-color: #1e293b;
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+    max-width: 700px;
+    width: 100%;
+}
+
+.game-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.game-title {
+    color: #e2e8f0;
+    font-size: 1.6rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+.stats {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.stat-box {
+    background-color: #0f172a;
+    padding: 0.6rem 1.2rem;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.stat-label {
+    color: #64748b;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.2rem;
+}
+
+.stat-value {
+    color: #e2e8f0;
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.card {
+    aspect-ratio: 1;
+    perspective: 800px;
+    cursor: pointer;
+}
+
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-style: preserve-3d;
+}
+
+.card.flipped .card-inner {
+    transform: rotateY(180deg);
+}
+
+.card.matched .card-inner {
+    transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-front {
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    border: 2px solid #3b82f6;
+    transform: rotateY(180deg);
+}
+
+.card-front .card-icon {
+    font-size: 2.5rem;
+    color: #ffffff;
+    font-weight: 700;
+    user-select: none;
+}
+
+.card-back {
+    background: linear-gradient(135deg, #334155, #1e293b);
+    border: 2px solid #475569;
+    cursor: pointer;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.card-back:hover {
+    border-color: #60a5fa;
+    box-shadow: 0 0 15px rgba(59, 130, 246, 0.3);
+}
+
+.card-back .card-pattern {
+    width: 40px;
+    height: 40px;
+    border: 2px solid #475569;
+    border-radius: 50%;
+    position: relative;
+}
+
+.card-back .card-pattern::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 12px;
+    height: 12px;
+    background-color: #475569;
+    border-radius: 50%;
+}
+
+.card.matched {
+    pointer-events: none;
+}
+
+.card.matched .card-front {
+    background: linear-gradient(135deg, #059669, #047857);
+    border-color: #10b981;
+    box-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
+}
+
+.card.wrong .card-front {
+    background: linear-gradient(135deg, #dc2626, #b91c1c);
+    border-color: #ef4444;
+    animation: shake 0.4s ease;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20% { transform: translateX(-6px); }
+    40% { transform: translateX(6px); }
+    60% { transform: translateX(-4px); }
+    80% { transform: translateX(4px); }
+}
+
+.btn-row {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 0.75rem 2rem;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    font-family: inherit;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s;
+}
+
+.btn-primary {
+    background-color: #2563eb;
+    color: #ffffff;
+}
+
+.btn-primary:hover {
+    background-color: #1d4ed8;
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background-color: #334155;
+    color: #e2e8f0;
+}
+
+.btn-secondary:hover {
+    background-color: #475569;
+    transform: translateY(-2px);
+}
+
+.win-message {
+    text-align: center;
+    color: #10b981;
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-top: 1rem;
+    min-height: 2rem;
+    transition: opacity 0.3s;
+}
+
+@media (max-width: 500px) {
+    .game-container {
+        padding: 1.2rem;
+    }
+
+    .card-grid {
+        gap: 0.5rem;
+    }
+
+    .game-title {
+        font-size: 1.3rem;
+    }
+
+    .stat-box {
+        padding: 0.4rem 0.8rem;
+    }
+
+    .stat-value {
+        font-size: 1.1rem;
+    }
+}
