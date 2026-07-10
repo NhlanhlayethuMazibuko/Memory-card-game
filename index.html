@@ -8,29 +8,46 @@
 </head>
 <body>
 
-    <div class="game-container">
-        <div class="game-header">
+    <div class="game-container" id="gameContainer">
+
+        <!-- START SCREEN -->
+        <div class="start-screen" id="startScreen">
             <h1 class="game-title">Memory Match</h1>
-            <div class="stats">
-                <div class="stat-box">
-                    <div class="stat-label">Moves</div>
-                    <div class="stat-value" id="moveCount">0</div>
+            <p class="start-subtitle">Pick a theme to begin</p>
+
+            <div class="theme-grid" id="themeGrid"></div>
+        </div>
+
+        <!-- GAME SCREEN -->
+        <div class="game-screen" id="gameScreen" style="display: none;">
+            <div class="game-header">
+                <h1 class="game-title" id="activeThemeTitle">Memory Match</h1>
+                <div class="stats">
+                    <div class="stat-box">
+                        <div class="stat-label">Moves</div>
+                        <div class="stat-value" id="moveCount">0</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-label">Pairs</div>
+                        <div class="stat-value" id="pairCount">0/8</div>
+                    </div>
+                    <div class="stat-box" id="timeBox" style="display: none;">
+                        <div class="stat-label">Time</div>
+                        <div class="stat-value" id="timeValue">0:00</div>
+                    </div>
                 </div>
-                <div class="stat-box">
-                    <div class="stat-label">Pairs</div>
-                    <div class="stat-value" id="pairCount">0/8</div>
-                </div>
+            </div>
+
+            <div class="card-grid" id="cardGrid"></div>
+
+            <div class="win-message" id="winMessage"></div>
+
+            <div class="btn-row">
+                <button class="btn btn-primary" onclick="startGame()">New Game</button>
+                <button class="btn btn-secondary" onclick="backToMenu()">Change Theme</button>
             </div>
         </div>
 
-        <div class="card-grid" id="cardGrid"></div>
-
-        <div class="win-message" id="winMessage"></div>
-
-        <div class="btn-row">
-            <button class="btn btn-primary" onclick="startGame()">New Game</button>
-            <button class="btn btn-secondary" onclick="resetStats()">Reset Score</button>
-        </div>
     </div>
 
     <script src="js/main.js"></script>
