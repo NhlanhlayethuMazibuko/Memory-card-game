@@ -65,9 +65,7 @@ function renderThemeButtons() {
 
         var btn = document.createElement('button');
         btn.className = 'theme-btn';
-        var previewSrc = 'assets/' + theme.folder + '/1.' + theme.ext; // just uses the first image as a preview
         btn.innerHTML =
-            '<img class="theme-btn-img" src="' + previewSrc + '" alt="" onerror="this.style.display=\'none\'">' +
             '<span class="theme-btn-name">' + theme.name + '</span>' +
             '<span class="theme-btn-meta">' + theme.difficulty + ' &middot; ' + theme.pairs + ' pairs</span>';
 
